@@ -1,0 +1,18 @@
+#include <windows.h>
+
+/* This is where all the input to the window goes to */
+LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) {
+	switch(Message) {
+		
+		/* Upon destruction, tell the main thread to stop */
+		case WM_DESTROY: {
+			PostQuitMessage(0);
+			break;
+		}
+		
+		/* All other messages (a lot of them) are processed using default procedures */
+		default:
+			return DefWindowProc(hwnd, Message, wParam, lParam);
+	}
+	return 0;
+}
